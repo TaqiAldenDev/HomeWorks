@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 4</title>
+    
+    <style>
+        body, h3 {
+            margin: 10px;
+        }
+
+        .link-box {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 3px solid green;
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+            margin-right: 20px; 
+        }
+
+        .link-box:hover {
+            background-color: green;
+            color: white;
+            border-color: green; 
+        }
+
+        .yellow-box {
+            background-color: yellow;
+            padding-left: 30px;
+            width: 80%; 
+        }
+
+        .yellow-box ul {
+            padding-left: 20px; 
+            margin: 0;
+        }
+
+        .yellow-box li {
+            list-style-type: square;
+        }
+
+        .yellow-box li::marker {
+            color: orange; 
+        }
+
+        .yellow-box li {
+            color: black; 
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .z-index-container {
+            position: relative; 
+            width: 300px;
+            height: 150px;
+            margin-top: 20px;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 90px;
+            height: 150px;
+            background-color: orange; 
+            opacity: 0.8; 
+            z-index: -1; 
+        }
+
+        .z-index-text h1 {
+            margin-top: 0;
+            padding-top: 10px;
+        }
+        
+        .z-index-text p {
+            white-space: nowrap;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h3>Task 1: Link Hover Effect</h3>
+    <a href="#" class="link-box">This is a link</a>
+    <a href="#" class="link-box">This is a link</a>
+    <br><br><br>
+
+    <h3>Task 2: Unordered List</h3>
+    <div class="yellow-box">
+        <ul>
+            <li>Coffee</li>
+            <li>Tea</li>
+            <li>Coca Cola</li>
+        </ul>
+    </div>
+    <br><br>
+
+    <h3>Task 3: Z-Index</h3>
+    <div class="z-index-container">
+        <div class="background-image"></div> 
+        <div class="z-index-text">
+            <h1>This is a heading</h1>
+            <p>Because the image has a z-index of -1, it will be placed behind the text.</p>
+        </div>
+    </div>
+
+</body>
+</html>

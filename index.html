@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homeworks Portal</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --primary-dark: #000000;
+            --accent: #1DCD9F;
+            --accent-dark: #169976;
+            --surface: #222222;
+            --surface-dark: #1a1a1a;
+            --bg: #000000;
+            --text: #ffffff;
+            --text-secondary: #a0aec0;
+            --border: #333333;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            border-top: 3px solid var(--accent);
+        }
+
+        .header {
+            background: var(--surface);
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: #000000;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: var(--text);
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        .student-info {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 32px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .student-info h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .homework-count {
+            font-size: 14px;
+            color: var(--accent);
+            background: var(--surface);
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .homework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .homework-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .homework-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: #000000;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-number {
+            background: rgba(0, 0, 0, 0.15);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .card-id {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .card-status {
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .card-body {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .card-body h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .card-body p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            padding: 12px 20px;
+            background: var(--surface-dark);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .view-link {
+            color: var(--accent);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .homework-card:hover .view-link {
+            color: var(--accent-dark);
+        }
+
+        .view-arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .homework-card:hover .view-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+            background: transparent;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            border: 1px solid var(--accent);
+        }
+
+        .github-link:hover {
+            background: var(--accent);
+            color: #000000;
+        }
+
+        .github-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .header-right {
+                text-align: left;
+            }
+
+            .homework-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <div class="header-left">
+                <div>
+                    <h1>Homeworks Portal ( .Dot Training  Full-Stack ) </h1>
+                    <p class="header-subtitle">portal to submit homeworks</p>
+                </div>
+            </div>
+            <a href="https://github.com/TaqiAldenDev/HomeWorks" target="_blank" class="github-link">
+                <i class="fa-brands fa-github"></i>
+                GitHub Repository
+            </a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="student-info">
+            <h2>Student Information</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Name</span>
+                    <span class="info-value">Taqi Alden Khaled Alshamali</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Phone</span>
+                    <span class="info-value">+962 789720693</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Email</span>
+                    <span class="info-value">taqidev1@gmail.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Submitted Homeworks</h2>
+            <span class="homework-count">4 Homeworks</span>
+        </div>
+        <div class="homework-grid">
+
+            <!-- HOMEWORK 1  -->
+            <a href="HM1/index.html" class="homework-card">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <div class="card-number">1</div>
+                        <span class="card-id">HW1</span>
+                    </div>
+                    <span class="card-status">Completed</span>
+                </div>
+                <div class="card-body">
+                    <h3>HTML Lists</h3>
+                    <p>Ordered, Unordered &amp; Definition Lists - Student activities and learning websites.</p>
+                </div>
+                <div class="card-footer">
+                    <span>View Assignment</span>
+                    <span class="view-link">Open <span class="view-arrow">&rarr;</span></span>
+                </div>
+            </a>
+
+            <!-- HOMEWORK 2 -->
+            <a href="HM2/index.html" class="homework-card">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <div class="card-number">2</div>
+                        <span class="card-id">HW2</span>
+                    </div>
+                    <span class="card-status">Completed</span>
+                </div>
+                <div class="card-body">
+                    <h3>HTML Table</h3>
+                    <p>Specification Table with Teaching Hours and Distribution of Theory Marks.</p>
+                </div>
+                <div class="card-footer">
+                    <span>View Assignment</span>
+                    <span class="view-link">Open <span class="view-arrow">&rarr;</span></span>
+                </div>
+            </a>
+
+            <!-- HOMEWORK 3 -->
+            <a href="HM3/index.html" class="homework-card">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <div class="card-number">3</div>
+                        <span class="card-id">HW3</span>
+                    </div>
+                    <span class="card-status">Completed</span>
+                </div>
+                <div class="card-body">
+                    <h3>Employee Registration Form</h3>
+                    <p>Complete registration form with personal details, contact info, and preferences.</p>
+                </div>
+                <div class="card-footer">
+                    <span>View Assignment</span>
+                    <span class="view-link">Open <span class="view-arrow">&rarr;</span></span>
+                </div>
+            </a>
+
+            <!-- HOMEWORK 4 -->
+            <a href="HM4/index.html" class="homework-card">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <div class="card-number">4</div>
+                        <span class="card-id">HW4</span>
+                    </div>
+                    <span class="card-status">Completed</span>
+                </div>
+                <div class="card-body">
+                    <h3>CSS Examples</h3>
+                    <p>Link hover effects, styled unordered lists, and z-index positioning.</p>
+                </div>
+                <div class="card-footer">
+                    <span>View Assignment</span>
+                    <span class="view-link">Open <span class="view-arrow">&rarr;</span></span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Homeworks Portal &copy; 2026. All rights reserved.</p>
+    </div>
+</body>
+</html>
