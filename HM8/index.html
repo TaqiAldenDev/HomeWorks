@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW8 : Pricing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .nav-link, .navbar-brand { color: #666; }
+        .pricing-header { text-align: center; margin-bottom: 3rem; }
+        .pricing-header h1 { font-weight: 300; }
+        .pricing-card { border: 1px solid #5bc0de; text-align: center; border-radius: 0.25rem; }
+        .pricing-card .card-header { background: #f8f9fa; border-bottom: 1px solid #5bc0de; border-radius: 0.25rem 0.25rem 0 0 !important; }
+        .price { font-size: 2.5rem; font-weight: 300; margin: 1.5rem 0; }
+        .price span { font-size: 1rem; color: #666; }
+        .features li { padding: 0.25rem 0; color: #333; }
+        .btn-pricing { width: 100%; padding: 0.75rem; margin-top: 1rem; }
+        .btn-outline { background: white; border: 1px solid #5bc0de; color: #5bc0de; }
+        .btn-blue { background: #007bff; border-color: #007bff; color: white; }
+        footer { border-top: 1px solid #e5e5e5; margin-top: 4rem; padding: 2rem 0; }
+        footer h6 { font-weight: 600; margin-bottom: 1rem; }
+        footer a { color: #666; text-decoration: none; display: block; margin-bottom: 0.5rem; }
+        footer a:hover { color: #007bff; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+        <div class="container">
+            <a class="navbar-brand" href="#">Company name</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="nav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Enterprise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-primary btn-sm ms-2" href="#">Sign up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="pricing-header">
+            <h1>Pricing</h1>
+            <p class="text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+        </div>
+
+        <div class="row justify-content-center g-4">
+            <div class="col-md-4">
+                <div class="card pricing-card h-100">
+                    <div class="card-header py-3"><h5 class="mb-0">Free</h5></div>
+                    <div class="card-body">
+                        <div class="price">$0 <span>/ mo</span></div>
+                        <ul class="list-unstyled features">
+                            <li>10 users included</li>
+                            <li>2 GB of storage</li>
+                            <li>Email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                        <button class="btn btn-pricing btn-outline">Sign up for free</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card pricing-card h-100">
+                    <div class="card-header py-3"><h5 class="mb-0">Pro</h5></div>
+                    <div class="card-body">
+                        <div class="price">$15 <span>/ mo</span></div>
+                        <ul class="list-unstyled features">
+                            <li>20 users included</li>
+                            <li>10 GB of storage</li>
+                            <li>Priority email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                        <button class="btn btn-pricing btn-blue">Get started</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card pricing-card h-100">
+                    <div class="card-header py-3"><h5 class="mb-0">Enterprise</h5></div>
+                    <div class="card-body">
+                        <div class="price">$29 <span>/ mo</span></div>
+                        <ul class="list-unstyled features">
+                            <li>30 users included</li>
+                            <li>15 GB of storage</li>
+                            <li>Phone and email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                        <button class="btn btn-pricing btn-blue">Contact us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <small class="text-muted">© 2017-2020</small>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h6>Features</h6>
+                    <a href="#">Cool stuff</a>
+                    <a href="#">Random feature</a>
+                    <a href="#">Team feature</a>
+                    <a href="#">Stuff for developers</a>
+                    <a href="#">Another one</a>
+                    <a href="#">Last time</a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h6>Resources</h6>
+                    <a href="#">Resource</a>
+                    <a href="#">Resource name</a>
+                    <a href="#">Another resource</a>
+                    <a href="#">Final resource</a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h6>About</h6>
+                    <a href="#">Team</a>
+                    <a href="#">Locations</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
