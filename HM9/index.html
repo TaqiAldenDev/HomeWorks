@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HW9 - LoginButton</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .app-container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+    }
+    h1 {
+      color: #1a1a1a;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+    button {
+      padding: 12px 32px;
+      font-size: 16px;
+      font-weight: 500;
+      color: white;
+      background: #007bff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    function LoginButton({ isLoggedIn, onClick }) {
+      return (
+        <button onClick={onClick}>
+          {isLoggedIn ? 'Logout' : 'Login'}
+        </button>
+      );
+    }
+
+    function App() {
+      const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+      const handleLoginToggle = () => {
+        setIsLoggedIn(!isLoggedIn);
+      };
+
+      return (
+        <>
+          <h1>Welcome to the website</h1>
+          <LoginButton isLoggedIn={isLoggedIn} onClick={handleLoginToggle} />
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
