@@ -5,19 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homeworks Portal</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
         :root {
-            --primary: #000000;
-            --primary-dark: #000000;
-            --accent: #1DCD9F;
-            --accent-dark: #169976;
-            --surface: #222222;
-            --surface-dark: #1a1a1a;
-            --bg: #000000;
-            --text: #ffffff;
-            --text-secondary: #a0aec0;
-            --border: #333333;
-            --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+            --bg: #060913;
+            --bg-gradient: radial-gradient(circle at 50% 0%, #0d1527 0%, #060913 70%);
+            --grid-line: rgba(255, 255, 255, 0.02);
+            
+            --surface: rgba(13, 20, 38, 0.45);
+            --surface-hover: rgba(20, 29, 54, 0.7);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(6, 182, 212, 0.35);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #475569;
+            
+            --accent-start: #06b6d4;
+            --accent-end: #6366f1;
+            --accent-glow: rgba(6, 182, 212, 0.15);
+            
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 12px 40px rgba(6, 182, 212, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --header-bg: rgba(6, 9, 19, 0.8);
+            --title-gradient: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            --btn-bg: rgba(255, 255, 255, 0.03);
+            
+            --card-footer-bg: rgba(6, 9, 19, 0.3);
+        }
+
+        body.light-mode {
+            --bg: #f8fafc;
+            --bg-gradient: radial-gradient(circle at 50% 0%, #f1f5f9 0%, #f8fafc 70%);
+            --grid-line: rgba(15, 23, 42, 0.02);
+            
+            --surface: rgba(255, 255, 255, 0.75);
+            --surface-hover: rgba(255, 255, 255, 0.95);
+            --border: rgba(15, 23, 42, 0.06);
+            --border-hover: rgba(6, 182, 212, 0.45);
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --accent-start: #0891b2;
+            --accent-end: #4f46e5;
+            --accent-glow: rgba(8, 145, 178, 0.1);
+            
+            --shadow: 0 4px 30px rgba(15, 23, 42, 0.02);
+            --shadow-lg: 0 12px 40px rgba(8, 145, 178, 0.06);
+            
+            --header-bg: rgba(248, 250, 252, 0.8);
+            --title-gradient: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            --btn-bg: rgba(15, 23, 42, 0.02);
+            
+            --card-footer-bg: rgba(15, 23, 42, 0.01);
         }
 
         * {
@@ -27,17 +71,42 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
             min-height: 100vh;
-            border-top: 3px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            line-height: 1.5;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+            mask-image: radial-gradient(ellipse at 50% 0%, black, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black, transparent 80%);
         }
 
         .header {
-            background: var(--surface);
-            color: var(--text);
+            position: relative;
+            background: var(--header-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
+            z-index: 10;
+            transition: var(--transition);
         }
 
         .header-inner {
@@ -55,140 +124,264 @@
             gap: 16px;
         }
 
-        .logo {
-            width: 48px;
-            height: 48px;
-            background: var(--accent);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            color: #000000;
-        }
-
         .header h1 {
             font-size: 24px;
-            font-weight: 600;
+            font-weight: 800;
+            background: var(--title-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
-            color: var(--text);
         }
 
         .header-subtitle {
-            font-size: 14px;
-            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-start);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             margin-top: 2px;
         }
 
-        .header-right {
-            text-align: right;
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--btn-bg);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-start);
+            color: var(--accent-start);
+            transform: translateY(-1px);
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            background: var(--btn-bg);
+            padding: 10px 18px;
+            border-radius: 12px;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(4px);
+        }
+
+        .github-link:hover {
+            border-color: var(--accent-start);
+            color: var(--accent-start);
+            transform: translateY(-1px);
+        }
+
+        .main {
+            position: relative;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 48px 24px;
+            z-index: 1;
+            flex-grow: 1;
+        }
+
+        /* Profile Banner Section */
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            background: var(--surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 48px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .student-info:hover {
+            border-color: rgba(6, 182, 212, 0.25);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .student-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%);
+            color: #060913;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 28px;
+            box-shadow: 0 8px 24px var(--accent-glow);
+            flex-shrink: 0;
+        }
+        
+        body.light-mode .profile-avatar {
+            color: #ffffff;
+        }
+
+        .profile-details {
+            flex-grow: 1;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 14px;
             color: var(--text-secondary);
         }
 
-        .main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 32px 24px;
-        }
-
-        .student-info {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 32px;
-            border-left: 4px solid var(--accent);
-        }
-
-        .student-info h2 {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-        }
-
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .info-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            letter-spacing: 0.5px;
-        }
-
-        .info-value {
+        .meta-item i {
+            color: var(--accent-start);
             font-size: 15px;
-            color: var(--text);
-            font-weight: 500;
         }
 
+        .meta-label {
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .meta-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.08);
+            color: #10b981;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        /* Section Header styling */
         .section-header {
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid var(--accent);
+            margin-bottom: 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .section-header h2 {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--accent);
+            font-size: 22px;
+            font-weight: 800;
+            background: var(--title-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
         .homework-count {
-            font-size: 14px;
-            color: var(--accent);
-            background: var(--surface);
-            padding: 6px 12px;
-            border-radius: 4px;
-            border: 1px solid var(--border);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-start);
+            background: rgba(6, 182, 212, 0.06);
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(6, 182, 212, 0.15);
+            letter-spacing: 0.5px;
         }
 
+        /* Grid & Cards */
         .homework-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
         }
 
         .homework-card {
             background: var(--surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 24px;
             overflow: hidden;
-            transition: all 0.2s ease;
+            transition: var(--transition);
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .homework-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1.5px;
+            background: linear-gradient(135deg, transparent, transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: var(--transition);
         }
 
         .homework-card:hover {
+            background: var(--surface-hover);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
-            border-color: var(--accent);
-            transform: translateY(-2px);
+            border-color: transparent;
+        }
+
+        .homework-card:hover::after {
+            background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
         }
 
         .card-header {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            color: #000000;
-            padding: 16px 20px;
+            padding: 24px 24px 16px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -201,132 +394,185 @@
         }
 
         .card-number {
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
             width: 32px;
             height: 32px;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 14px;
+            border: 1px solid var(--border);
+        }
+
+        body.light-mode .card-number {
+            background: rgba(15, 23, 42, 0.02);
+            color: var(--text-secondary);
         }
 
         .card-id {
-            font-weight: 600;
-            font-size: 16px;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
         }
 
         .card-status {
-            font-size: 12px;
-            background: rgba(0, 0, 0, 0.15);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(16, 185, 129, 0.08);
+            color: #10b981;
             padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 500;
+            border-radius: 6px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
         }
 
         .card-body {
-            padding: 20px;
+            padding: 0 24px 24px 24px;
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .card-body h3 {
             font-size: 18px;
-            font-weight: 600;
-            color: var(--text);
+            font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: 8px;
+            letter-spacing: -0.3px;
         }
 
         .card-body p {
-            font-size: 14px;
+            font-size: 13.5px;
             color: var(--text-secondary);
             line-height: 1.6;
+            flex-grow: 1;
         }
 
+        /* Tech Tags */
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.2px;
+            text-transform: uppercase;
+        }
+
+        .tag-html { background: rgba(249, 115, 22, 0.06); color: #f97316; border: 1px solid rgba(249, 115, 22, 0.12); }
+        .tag-structure { background: rgba(100, 116, 139, 0.06); color: var(--text-secondary); border: 1px solid rgba(100, 116, 139, 0.12); }
+        .tag-data { background: rgba(14, 165, 233, 0.06); color: #0ea5e9; border: 1px solid rgba(14, 165, 233, 0.12); }
+        .tag-validate { background: rgba(16, 185, 129, 0.06); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.12); }
+        .tag-css { background: rgba(59, 130, 246, 0.06); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.12); }
+        .tag-effects { background: rgba(236, 72, 153, 0.06); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.12); }
+        .tag-design { background: rgba(168, 85, 247, 0.06); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.12); }
+        .tag-portfolio { background: rgba(20, 184, 166, 0.06); color: #14b8a6; border: 1px solid rgba(20, 184, 166, 0.12); }
+        .tag-responsive { background: rgba(245, 158, 11, 0.06); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.12); }
+        .tag-bootstrap { background: rgba(139, 92, 246, 0.06); color: #8b5cf6; border: 1px solid rgba(139, 92, 246, 0.12); }
+        .tag-layout { background: rgba(99, 102, 241, 0.06); color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.12); }
+        .tag-components { background: rgba(239, 68, 68, 0.06); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.12); }
+        .tag-react { background: rgba(6, 182, 212, 0.06); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.12); }
+        .tag-props { background: rgba(217, 70, 239, 0.06); color: #d946ef; border: 1px solid rgba(217, 70, 239, 0.12); }
+
         .card-footer {
-            padding: 12px 20px;
-            background: var(--surface-dark);
+            padding: 18px 24px;
+            background: var(--card-footer-bg);
             border-top: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
             font-size: 13px;
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .view-link {
-            color: var(--accent);
-            font-weight: 600;
+            color: var(--accent-start);
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+            transition: var(--transition);
         }
 
         .homework-card:hover .view-link {
-            color: var(--accent-dark);
+            color: var(--accent-start);
+            filter: brightness(1.2);
         }
 
         .view-arrow {
-            transition: transform 0.2s ease;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
         }
 
         .homework-card:hover .view-arrow {
             transform: translateX(4px);
         }
 
+        /* Footer styling */
         .footer {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 24px;
+            width: 100%;
+            margin: auto auto 0 auto;
+            padding: 40px 24px;
             border-top: 1px solid var(--border);
             text-align: center;
-            color: var(--text-secondary);
-            font-size: 14px;
+            position: relative;
+            z-index: 1;
         }
 
-        .github-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 14px;
-            background: transparent;
-            padding: 6px 12px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            border: 1px solid var(--accent);
-        }
-
-        .github-link:hover {
-            background: var(--accent);
-            color: #000000;
-        }
-
-        .github-icon {
-            width: 18px;
-            height: 18px;
+        .footer p {
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
         }
 
         @media (max-width: 768px) {
             .header-inner {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
+                align-items: stretch;
+                gap: 16px;
             }
 
-            .header-right {
-                text-align: left;
+            .header-actions {
+                justify-content: space-between;
+            }
+
+            .github-link {
+                flex-grow: 1;
+                justify-content: center;
             }
 
             .homework-grid {
                 grid-template-columns: 1fr;
             }
 
-            .section-header {
+            .student-info {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 8px;
+                gap: 20px;
+                padding: 24px;
+            }
+
+            .profile-meta {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .section-header {
+                flex-direction: row;
+                align-items: center;
             }
         }
     </style>
@@ -341,28 +587,39 @@
                     <p class="header-subtitle">portal to submit homeworks</p>
                 </div>
             </div>
-            <a href="https://github.com/TaqiAldenDev/HomeWorks" target="_blank" class="github-link">
-                <i class="fa-brands fa-github"></i>
-                GitHub Repository
-            </a>
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="https://github.com/TaqiAldenDev/HomeWorks" target="_blank" class="github-link">
+                    <i class="fa-brands fa-github"></i>
+                    GitHub Repository
+                </a>
+            </div>
         </div>
     </div>
 
     <div class="main">
         <div class="student-info">
-            <h2>Student Information</h2>
-            <div class="info-grid">
-                <div class="info-item">
-                    <span class="info-label">Name</span>
-                    <span class="info-value">Taqi Alden Khaled Alshamali</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Phone</span>
-                    <span class="info-value">+962 789720693</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Email</span>
-                    <span class="info-value">taqidev1@gmail.com</span>
+            <div class="profile-avatar">TA</div>
+            <div class="profile-details">
+                <div class="profile-name">Taqi Alden Khaled Alshamali</div>
+                <div class="profile-meta">
+                    <div class="meta-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span class="meta-label">Email:</span>
+                        <span class="meta-value">taqidev1@gmail.com</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="meta-label">Phone:</span>
+                        <span class="meta-value">+962 789720693</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span class="meta-label">Status:</span>
+                        <span class="meta-value status-active">Active Student</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -385,6 +642,10 @@
                 <div class="card-body">
                     <h3>HTML Lists</h3>
                     <p>Ordered, Unordered &amp; Definition Lists - Student activities and learning websites.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-html">HTML5</span>
+                        <span class="tag tag-structure">Structure</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -404,6 +665,10 @@
                 <div class="card-body">
                     <h3>HTML Table</h3>
                     <p>Specification Table with Teaching Hours and Distribution of Theory Marks.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-html">HTML5</span>
+                        <span class="tag tag-data">Data Representation</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -423,6 +688,10 @@
                 <div class="card-body">
                     <h3>Employee Registration Form</h3>
                     <p>Complete registration form with personal details, contact info, and preferences.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-validate">Validation</span>
+                        <span class="tag tag-html">Forms</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -442,6 +711,10 @@
                 <div class="card-body">
                     <h3>CSS Examples</h3>
                     <p>Link hover effects, styled unordered lists, and z-index positioning.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-css">CSS3</span>
+                        <span class="tag tag-effects">Interactions</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -461,6 +734,10 @@
                 <div class="card-body">
                     <h3>Account Login Page</h3>
                     <p>Glassmorphism login form with username, password, remember me, and forgot password.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-css">Glassmorphism</span>
+                        <span class="tag tag-design">UI/UX</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -480,6 +757,10 @@
                 <div class="card-body">
                     <h3>Personal Portfolio</h3>
                     <p>Four-section portfolio: intro hero, technical expertise, featured projects, and a contact section.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-portfolio">Web Showcase</span>
+                        <span class="tag tag-responsive">Responsive</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -499,6 +780,10 @@
                 <div class="card-body">
                     <h3>Sign in page</h3>
                     <p>Bootstrap-based sign-in form with email/password inputs, “Remember me” checkbox, and a clean centered card layout.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-bootstrap">Bootstrap 5</span>
+                        <span class="tag tag-layout">Layout</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -518,6 +803,10 @@
                 <div class="card-body">
                     <h3>Bootstrap Pricing Page</h3>
                     <p>Bootstrap pricing table with three plan cards (Free, Pro, Enterprise), feature lists, and styled call-to-action buttons.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-bootstrap">Bootstrap 5</span>
+                        <span class="tag tag-components">Pricing Grid</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -537,6 +826,10 @@
                 <div class="card-body">
                     <h3>React LoginButton Component</h3>
                     <p>Conditional rendering with React props - Login/Logout button based on isLoggedIn prop.</p>
+                    <div class="card-tags">
+                        <span class="tag tag-react">ReactJS</span>
+                        <span class="tag tag-props">State &amp; Props</span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <span>View Assignment</span>
@@ -545,7 +838,32 @@
             </a>
         </div>
     </div>
+    
+    <footer class="footer">
         <p>Homeworks Portal &copy; 2026. All rights reserved.</p>
-    </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference, otherwise use system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        
+        if (savedTheme === 'light' || (!savedTheme && systemPrefersLight)) {
+            document.body.classList.add('light-mode');
+            icon.className = 'fa-solid fa-sun';
+        } else {
+            icon.className = 'fa-solid fa-moon';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            icon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        });
+    </script>
 </body>
 </html>
