@@ -1,0 +1,135 @@
+body {
+  background: #0d1117;
+  min-height: 100vh;
+}
+
+.btn-primary {
+  background: #2F80ED;
+  border-color: #2F80ED;
+}
+
+.btn-primary:hover {
+  background: #1f6fd9;
+  border-color: #1f6fd9;
+}
+
+.btn-primary:active:focus {
+  background: #1a5fc2;
+  border-color: #1a5fc2;
+}
+
+.nav-pills .nav-link.active {
+  background: #2F80ED;
+}
+
+.nav-pills .nav-link {
+  color: #8b949e;
+}
+
+.nav-pills .nav-link:hover {
+  color: #e6edf3;
+}
+
+.btn-outline-secondary {
+  color: #8b949e;
+  border-color: #30363d;
+}
+
+.btn-outline-secondary:hover {
+  background: #21262d;
+  color: #e6edf3;
+  border-color: #8b949e;
+}
+
+.btn-outline-danger {
+  color: #EB5757;
+  border-color: #EB5757;
+}
+
+.btn-outline-danger:hover {
+  background: #EB5757;
+  border-color: #EB5757;
+  color: #fff;
+}
+
+.progress-bar {
+  background: #00BFA6;
+}
+
+.todo-card {
+  max-width: 540px;
+}
+
+.todo-checkbox {
+  width: 1.2em;
+  height: 1.2em;
+  cursor: pointer;
+  background: #21262d;
+  border: 1px solid #30363d;
+}
+
+.form-control {
+  background: #161b22;
+  border-color: #30363d;
+  color: #e6edf3;
+}
+
+.form-control:focus {
+  background: #161b22;
+  border-color: #2F80ED;
+  box-shadow: 0 0 0 0.2rem rgba(47, 128, 237, 0.25);
+  color: #e6edf3;
+}
+
+.form-control::placeholder {
+  color: #484f58;
+}
+
+.card {
+  background: #161b22;
+  border-color: #21262d;
+}
+
+.list-group-item {
+  background: transparent;
+  border-color: #21262d;
+  color: #e6edf3;
+  transition: background 0.15s;
+}
+
+.list-group-item:hover {
+  background: #1c2128;
+}
+
+.todo-text {
+  flex: 1;
+  color: #e6edf3;
+}
+
+.todo-text.done {
+  text-decoration: line-through;
+  color: #484f58;
+}
+
+.task-enter {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.progress-thin {
+  height: 6px;
+}
+
+.empty-state {
+  padding: 48px 16px;
+}
